@@ -7,7 +7,7 @@ public class Drone {
     private String name;
     private int maxWeight;
 
-    private List<Location> trips;
+    private List<Trip> trips;
 
     public Drone(String name, int maxWeight) {
         this.name = name;
@@ -31,19 +31,28 @@ public class Drone {
         this.maxWeight = maxWeight;
     }
 
-    public List<Location> getTrips() {
+    public List<Trip> getTrips() {
         return trips;
     }
 
-    public void addTrip(Location location) {
-        trips.add(location);
+    public void addTrip(Trip trip) {
+        trips.add(trip);
     }
 
     public int getRemainingCapacity() {
-        int totalWeight = 0;
-        for (Location location : trips) {
-            totalWeight += location.getWeight();
+        int usedCapacity = 0;
+        for (Trip trip : trips) {
+            usedCapacity += trip.getTotalWeight();
         }
-        return maxWeight - totalWeight;
+        return maxWeight - usedCapacity;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + name + "]";
     }
 }

@@ -2,6 +2,7 @@ package com.velozient.view.console;
 
 import com.velozient.models.Drone;
 import com.velozient.models.Location;
+import com.velozient.models.Trip;
 import com.velozient.view.DeliveryManagerView;
 
 import java.util.ArrayList;
@@ -17,14 +18,25 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
     @Override
     public void showDeliveries() {
         for (Drone drone : drones) {
-            System.out.println("[" + drone.getName() + "]");
-            List<Location> locations = drone.getTrips();
-            List<String> locationNames = new ArrayList<>();
-            for (Location location : locations) {
-                locationNames.add("[" + location.getName() + "]");
+            System.out.println(drone.toString());
+            List<Trip> trips = drone.getTrips();
+            for (int i = 0; i < trips.size(); i++) {
+                System.out.print("Trip #" + (i + 1));
+                List<Location> locations = trips.get(i).getLocations();
+                for (int j = 0; j < locations.size(); j++) {
+                    Location location = locations.get(j);
+                    if (j == 0) {
+                        System.out.print("\n");
+                    }
+                    System.out.print(location.toString());
+                    if (j == locations.size() - 1) {
+                        System.out.print("\n");
+                    }
+                }
+                if (i == trips.size() - 1) {
+                    System.out.print("\n");
+                }
             }
-            System.out.println("Trip #1");
-            System.out.println(String.join(", ", locationNames));
         }
     }
 }

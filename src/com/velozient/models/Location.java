@@ -24,4 +24,9 @@ public class Location {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "[" + name + "]";
+    }
 }
