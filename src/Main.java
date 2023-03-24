@@ -27,8 +27,6 @@ public class Main {
                 String.join(",", Arrays.copyOfRange(inputLines, 1, inputLines.length)));
         DeliveryPlanner deliveryPlanner = new DeliveryPlanner();
         deliveryPlanner.assignDeliveries(drones, locations);
-        System.out.println(drones);
-        System.out.println(locations);
 
         DeliveryManagerView deliveryManagerView = new DeliveryManagerViewConsole(drones);
         deliveryManagerView.showDeliveries();

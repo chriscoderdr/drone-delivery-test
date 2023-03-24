@@ -8,30 +8,28 @@ import java.util.*;
 
 public class DeliveryPlanner {
     public void assignDeliveries(List<Drone> drones, List<Location> locations) {
-        // loop through the drones and assign locations
-        for (Drone drone : drones) {
-            while (!locations.isEmpty()) {
-                int remainingCapacity = drone.getRemainingCapacity();
-                List<Location> tripLocations = new ArrayList<>();
-                int totalWeight = 0;
+        locations.sort((l1, l2) -> l2.getWeight() - l1.getWeight());
+        drones.sort((d1, d2) -> d2.getMaxWeightCapacity() - d1.getMaxWeightCapacity());
+        ArrayDeque<Location> locationsQueue = new ArrayDeque<>(locations);
 
-                // group the remaining locations into a trip that does not exceed the drone's capacity
-                for (Location location : locations) {
-                    if (location.getWeight() <= remainingCapacity) {
-                        tripLocations.add(location);
-                        totalWeight += location.getWeight();
-                        remainingCapacity -= location.getWeight();
+        while (!locationsQueue.isEmpty()) {
+            for (Location location : locationsQueue) {
+                Drone bestCapacityDrone = null;
+                for (Drone drone : drones) {
+                    if (drone.getCurrentCapacity() > 0 && drone.getCurrentCapacity() >= location.getWeight() &&
+                            (bestCapacityDrone == null || drone.getCurrentCapacity() > bestCapacityDrone.getCurrentCapacity())) {
+                        bestCapacityDrone = drone;
+                    } else if (drone.getMaxWeightCapacity() > location.getWeight() && drone.getCurrentTrip().getLocations().size() > 1) {
+                        drone.addTrip(new Trip());
+                        bestCapacityDrone = drone;
                     }
                 }
-
-                if (!tripLocations.isEmpty()) {
-                    // remove the assigned locations from the list
-                    locations.removeAll(tripLocations);
-                    drone.addTrip(new Trip(tripLocations));
-                } else {
-                    break; // no more locations can be assigned to this drone
+                if (bestCapacityDrone != null) {
+                    bestCapacityDrone.getCurrentTrip().addLocation(location);
+                    locationsQueue.remove();
                 }
             }
         }
     }
+
 }

@@ -18,9 +18,15 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
     @Override
     public void showDeliveries() {
         for (Drone drone : drones) {
-            System.out.println(drone.toString());
+
             List<Trip> trips = drone.getTrips();
             for (int i = 0; i < trips.size(); i++) {
+                if (trips.get(i).getLocations().isEmpty()) {
+                    continue;
+                }
+                if (i == 0) {
+                    System.out.println(drone);
+                }
                 System.out.print("Trip #" + (i + 1));
                 List<Location> locations = trips.get(i).getLocations();
                 for (int j = 0; j < locations.size(); j++) {
@@ -28,7 +34,7 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
                     if (j == 0) {
                         System.out.print("\n");
                     }
-                    System.out.print(location.toString());
+                    System.out.print(location + " " + location.getWeight());
                     if (j == locations.size() - 1) {
                         System.out.print("\n");
                     }

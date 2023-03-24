@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Drone {
     private String name;
-    private int maxWeight;
+    private int maxWeightCapacity;
 
     private List<Trip> trips;
 
-    public Drone(String name, int maxWeight) {
+    public Drone(String name, int maxWeightCapacity) {
         this.name = name;
-        this.maxWeight = maxWeight;
+        this.maxWeightCapacity = maxWeightCapacity;
         this.trips = new ArrayList<>();
     }
 
@@ -23,12 +23,12 @@ public class Drone {
         this.name = name;
     }
 
-    public int getMaxWeight() {
-        return maxWeight;
+    public int getMaxWeightCapacity() {
+        return maxWeightCapacity;
     }
 
-    public void setMaxWeight(int maxWeight) {
-        this.maxWeight = maxWeight;
+    public void setMaxWeightCapacity(int maxWeightCapacity) {
+        this.maxWeightCapacity = maxWeightCapacity;
     }
 
     public List<Trip> getTrips() {
@@ -39,14 +39,6 @@ public class Drone {
         trips.add(trip);
     }
 
-    public int getRemainingCapacity() {
-        int usedCapacity = 0;
-        for (Trip trip : trips) {
-            usedCapacity += trip.getTotalWeight();
-        }
-        return maxWeight - usedCapacity;
-    }
-
     public void setTrips(List<Trip> trips) {
         this.trips = trips;
     }
@@ -54,5 +46,16 @@ public class Drone {
     @Override
     public String toString() {
         return "[" + name + "]";
+    }
+
+    public Trip getCurrentTrip() {
+        if (trips.isEmpty()) {
+            trips.add(new Trip());
+        }
+        return trips.get(trips.size() - 1);
+    }
+
+    public int getCurrentCapacity() {
+        return getMaxWeightCapacity() - getCurrentTrip().getTotalWeight();
     }
 }

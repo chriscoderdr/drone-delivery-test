@@ -6,6 +6,10 @@ import java.util.List;
 public class Trip {
     List<Location> locations;
 
+    public Trip() {
+        locations = new ArrayList<>();
+    }
+
     public Trip(List<Location> locations) {
         this.locations = locations;
     }
