@@ -1,12 +1,12 @@
+:: compile.bat
 @echo off
-setlocal enabledelayedexpansion
-set "classpath=out"
+set SRC=src\main\java
+set OUT=out
 
-rem compile Java files
-for /f "delims=" %%f in ('dir /b /s *.java') do (
-  javac "%%f" -d "out/"
-  set "classpath=!classpath!;out/"
+:: Compile all .java files in SRC and its subdirectories
+for /r %SRC% %%f in (*.java) do (
+  javac -d %OUT% "%%f"
 )
 
-rem run Main class with arguments
-java -classpath "!classpath!" com.velozient.dronedelivery.Main %*
+:: Run the Main class
+java -classpath "%OUT%" com.velozient.dronedelivery.Main %*

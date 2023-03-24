@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DeliveryManagerViewConsole implements DeliveryManagerView {
     List<Drone> drones;
-    String[] commandArgs;
+    final String[] commandArgs;
     DeliveryManagerViewController viewController;
 
     public DeliveryManagerViewConsole(String[] commandArgs) {
@@ -49,8 +49,11 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
 
 
     private void showHelp() {
-        System.out.println("DroneDeliveryService\nOptions:\n    -path: " +
-                "File path following the pattern (There are sample files in samples folder):\n");
+        System.out.println("""
+                DroneDeliveryService
+                Options:
+                    -path: File path following the pattern (There are sample files in samples folder):
+                """);
         showFileFormat();
     }
 

@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class DeliveryReaderFile implements DeliveryReader {
-    String filePath;
+    final String filePath;
 
     public DeliveryReaderFile(String filePath) {
         this.filePath = filePath;

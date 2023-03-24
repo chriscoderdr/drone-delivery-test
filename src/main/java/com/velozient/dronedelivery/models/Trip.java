@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trip {
-    List<Location> locations;
+    final List<Location> locations;
 
     public Trip() {
         locations = new ArrayList<>();

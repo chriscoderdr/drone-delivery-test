@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DeliveryManagerViewController {
-    DeliveryManagerView view;
-    String filePath;
+    final DeliveryManagerView view;
+    final String filePath;
 
     public DeliveryManagerViewController(DeliveryManagerView view, String filePath) {
         this.view = view;
