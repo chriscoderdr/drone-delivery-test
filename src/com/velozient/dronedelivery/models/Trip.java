@@ -1,4 +1,4 @@
-package com.velozient.models;
+package com.velozient.dronedelivery.models;
 
 import java.util.ArrayList;
 import java.util.List;

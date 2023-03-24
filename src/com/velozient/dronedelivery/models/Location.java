@@ -1,4 +1,4 @@
-package com.velozient.models;
+package com.velozient.dronedelivery.models;
 
 public class Location {
     private String name;

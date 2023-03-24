@@ -1,14 +1,11 @@
-package com.velozient.parsers.console;
+package com.velozient.dronedelivery.parsers.console;
 
-import com.velozient.models.Drone;
-import com.velozient.models.Location;
-import com.velozient.parsers.DeliveryParser;
+import com.velozient.dronedelivery.models.Drone;
+import com.velozient.dronedelivery.models.Location;
+import com.velozient.dronedelivery.parsers.DeliveryParser;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class DeliveryParserConsole implements DeliveryParser {
 

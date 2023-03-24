@@ -1,4 +1,4 @@
-package com.velozient.readers;
+package com.velozient.dronedelivery.readers;
 
 import java.io.IOException;
 

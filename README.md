@@ -20,3 +20,8 @@ of required deliveries.
 
 ## How to run
 
+### Linux/MacOS/Unix
+
+Inside the project directory
+
+Run `./run.sh`

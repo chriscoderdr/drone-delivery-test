@@ -1,6 +1,6 @@
-package com.velozient.readers.file;
+package com.velozient.dronedelivery.readers.file;
 
-import com.velozient.readers.DeliveryReader;
+import com.velozient.dronedelivery.readers.DeliveryReader;
 
 import java.io.IOException;
 import java.nio.file.Files;

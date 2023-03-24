@@ -1,8 +1,8 @@
-package com.velozient.controller;
+package com.velozient.dronedelivery.controller;
 
-import com.velozient.models.Drone;
-import com.velozient.models.Location;
-import com.velozient.models.Trip;
+import com.velozient.dronedelivery.models.Drone;
+import com.velozient.dronedelivery.models.Location;
+import com.velozient.dronedelivery.models.Trip;
 
 import java.util.*;
 

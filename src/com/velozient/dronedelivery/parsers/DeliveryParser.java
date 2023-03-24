@@ -1,7 +1,7 @@
-package com.velozient.parsers;
+package com.velozient.dronedelivery.parsers;
 
-import com.velozient.models.Drone;
-import com.velozient.models.Location;
+import com.velozient.dronedelivery.models.Drone;
+import com.velozient.dronedelivery.models.Location;
 
 import java.io.FileNotFoundException;
 import java.util.List;
