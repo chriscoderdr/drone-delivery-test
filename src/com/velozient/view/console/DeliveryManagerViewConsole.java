@@ -25,7 +25,7 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
                     continue;
                 }
                 if (i == 0) {
-                    System.out.println(drone);
+                    System.out.println(drone + "" + drone.getMaxWeightCapacity());
                 }
                 System.out.print("Trip #" + (i + 1));
                 List<Location> locations = trips.get(i).getLocations();
