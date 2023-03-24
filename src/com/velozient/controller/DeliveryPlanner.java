@@ -18,6 +18,5 @@ public class DeliveryPlanner {
                 bestDrone.addTrip(location);
             }
         }
-        System.out.println(drones);
     }
 }

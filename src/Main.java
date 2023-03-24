@@ -5,6 +5,8 @@ import com.velozient.parsers.DeliveryParser;
 import com.velozient.parsers.console.DeliveryParserConsole;
 import com.velozient.readers.DeliveryReader;
 import com.velozient.readers.file.DeliveryReaderFile;
+import com.velozient.view.DeliveryManagerView;
+import com.velozient.view.console.DeliveryManagerViewConsole;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,6 +29,9 @@ public class Main {
         deliveryPlanner.assignDeliveries(drones, locations);
         System.out.println(drones);
         System.out.println(locations);
+
+        DeliveryManagerView deliveryManagerView = new DeliveryManagerViewConsole(drones);
+        deliveryManagerView.showDeliveries();
     }
 
 }
