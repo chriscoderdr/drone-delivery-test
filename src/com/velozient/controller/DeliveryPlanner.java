@@ -7,6 +7,11 @@ import com.velozient.models.Trip;
 import java.util.*;
 
 public class DeliveryPlanner {
+    /*
+     * We order the drones and locations for the ones with greater weight and capacity so that those can go first
+     * which will avoid having filled the trip for the bigger drones with small locations leaving no option
+     * but to create a new trip because the smaller ones don't have space for these locations
+     */
     public void assignDeliveries(List<Drone> drones, List<Location> locations) {
         locations.sort((l1, l2) -> l2.getWeight() - l1.getWeight());
         drones.sort((d1, d2) -> d2.getMaxWeightCapacity() - d1.getMaxWeightCapacity());
@@ -19,7 +24,9 @@ public class DeliveryPlanner {
                     if (drone.getCurrentCapacity() > 0 && drone.getCurrentCapacity() >= location.getWeight() &&
                             (bestCapacityDrone == null || drone.getCurrentCapacity() > bestCapacityDrone.getCurrentCapacity())) {
                         bestCapacityDrone = drone;
-                    } else if (drone.getMaxWeightCapacity() > location.getWeight() && drone.getCurrentTrip().getLocations().size() > 1) {
+                    } else if (drone.getMaxWeightCapacity() > location.getWeight()
+                            && drone.getCurrentTrip().getLocations().size() > 1) {
+                        // If we don't create a new trip here we won't have capacity after filling our drones
                         drone.addTrip(new Trip());
                         bestCapacityDrone = drone;
                     }
