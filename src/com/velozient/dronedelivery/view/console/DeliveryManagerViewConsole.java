@@ -11,33 +11,44 @@ import java.util.List;
 public class DeliveryManagerViewConsole implements DeliveryManagerView {
     List<Drone> drones;
     String[] commandArgs;
-
-
     DeliveryManagerViewController viewController;
 
     public DeliveryManagerViewConsole(String[] commandArgs) {
         this.commandArgs = commandArgs;
-        this.viewController = new DeliveryManagerViewController(this);
     }
 
-    private void selectFile() {
+    private void selectFile(boolean fileArgPassed) {
+        String filePath = "delivery_info.txt";
+        if (fileArgPassed) {
+            if (commandArgs.length < 2) {
+                showFileArgNotFound();
+                return;
+            }
+            filePath = commandArgs[1];
+        }
+        this.viewController = new DeliveryManagerViewController(this, filePath);
+        this.viewController.loadData();
+    }
 
+    private void showFileArgNotFound() {
+        System.out.println("You passed -file argument but didn't pass a file please do so.");
     }
 
     public void init() {
         if (commandArgs.length > 0) {
             switch (commandArgs[0]) {
                 case CommandLineArgs.help -> showHelp();
-                case CommandLineArgs.path -> selectFile();
+                case CommandLineArgs.path -> selectFile(true);
                 default -> showInvalidArgs();
             }
             return;
         }
+        selectFile(false);
     }
 
 
     private void showHelp() {
-        System.out.println("DroneDeliveryService\nOptions:\n-input: File path following the pattern in delivery_info.txt sample file");
+        System.out.println("DroneDeliveryService\nOptions:\n-path: File path following the pattern in delivery_info.txt sample file");
     }
 
     private void showInvalidArgs() {
@@ -53,7 +64,7 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
                     continue;
                 }
                 if (i == 0) {
-                    System.out.println(drone + "" + drone.getMaxWeightCapacity());
+                    System.out.println(drone);
                 }
                 System.out.print("Trip #" + (i + 1));
                 List<Location> locations = trips.get(i).getLocations();
@@ -62,7 +73,7 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
                     if (j == 0) {
                         System.out.print("\n");
                     }
-                    System.out.print(location + " " + location.getWeight());
+                    System.out.print(location);
                     if (j == locations.size() - 1) {
                         System.out.print("\n");
                     }
@@ -77,5 +88,11 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
     @Override
     public void showParseFileError() {
         System.out.println("Error parsing file.");
+    }
+
+    @Override
+    public void onDataLoaded(List<Drone> drones) {
+        this.drones = drones;
+        show();
     }
 }

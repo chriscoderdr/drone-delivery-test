@@ -7,8 +7,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class DeliveryReaderFile implements DeliveryReader {
+    String filePath;
+
+    public DeliveryReaderFile(String filePath) {
+        this.filePath = filePath;
+    }
+
     @Override
     public String read() throws IOException {
-        return Files.readString(Paths.get("delivery_info.txt"));
+        return Files.readString(Paths.get(filePath));
     }
 }

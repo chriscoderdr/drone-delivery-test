@@ -16,14 +16,16 @@ import java.util.List;
 public class DeliveryManagerViewController {
     List<Drone> drones;
     DeliveryManagerView view;
+    String filePath;
 
-    public DeliveryManagerViewController(DeliveryManagerView view) {
+    public DeliveryManagerViewController(DeliveryManagerView view, String filePath) {
         this.view = view;
+        this.filePath = filePath;
     }
 
-    private void parseData() {
+    public void loadData() {
         try {
-            DeliveryReader deliveryReader = new DeliveryReaderFile();
+            DeliveryReader deliveryReader = new DeliveryReaderFile(filePath);
             String[] inputLines;
             inputLines = deliveryReader.read().split(System.lineSeparator());
             DeliveryParser deliveryParser = new DeliveryParserConsole();
@@ -32,6 +34,7 @@ public class DeliveryManagerViewController {
                     String.join(",", Arrays.copyOfRange(inputLines, 1, inputLines.length)));
             DeliveryPlanner deliveryPlanner = new DeliveryPlanner();
             deliveryPlanner.assignDeliveries(drones, locations);
+            view.onDataLoaded(drones);
         } catch (IOException e) {
             view.showParseFileError();
         }
