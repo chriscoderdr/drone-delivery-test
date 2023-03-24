@@ -16,14 +16,26 @@ Gradle (optional)
 
 Run `./gradlew run`
 
+to pass arguments
+
+`Run ./gradlew run --args="-path somefile.txt"`
+
 to run the test
 
 Run `./gradlew test`
+
+## options
+
+- `-path filePath` filename can be pass to the 
 
 ### Without Gradle
 
 #### Linux
 Run `./run.sh`
+
+to pass arguments:
+
+`Run ./run.sh -path somefile.txt`
 
 #### Windows
 
