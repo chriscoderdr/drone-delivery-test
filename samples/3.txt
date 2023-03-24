@@ -1,0 +1,8 @@
+[Thunderbird], [200], [Eagle], [150], [Osprey], [250]
+[Yellowstone National Park], [200]
+[Grand Canyon], [150]
+[Redwood Forest], [100]
+[Acadia National Park], [75]
+[Glacier Bay], [120]
+[Everglades], [50]
+[Joshua Tree], [100]

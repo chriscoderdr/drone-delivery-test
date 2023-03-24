@@ -6,6 +6,7 @@ import com.velozient.dronedelivery.models.Location;
 import com.velozient.dronedelivery.models.Trip;
 import com.velozient.dronedelivery.view.DeliveryManagerView;
 
+import java.nio.file.NoSuchFileException;
 import java.util.List;
 
 public class DeliveryManagerViewConsole implements DeliveryManagerView {
@@ -18,7 +19,7 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
     }
 
     private void selectFile(boolean fileArgPassed) {
-        String filePath = "delivery_info.txt";
+        String filePath = "samples/1.txt";
         if (fileArgPassed) {
             if (commandArgs.length < 2) {
                 showFileArgNotFound();
@@ -48,7 +49,9 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
 
 
     private void showHelp() {
-        System.out.println("DroneDeliveryService\nOptions:\n-path: File path following the pattern in delivery_info.txt sample file");
+        System.out.println("DroneDeliveryService\nOptions:\n    -path: " +
+                "File path following the pattern (There are sample files in samples folder):\n");
+        showFileFormat();
     }
 
     private void showInvalidArgs() {
@@ -76,6 +79,8 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
                     System.out.print(location);
                     if (j == locations.size() - 1) {
                         System.out.print("\n");
+                    } else {
+                        System.out.print(", ");
                     }
                 }
                 if (i == trips.size() - 1) {
@@ -86,13 +91,28 @@ public class DeliveryManagerViewConsole implements DeliveryManagerView {
     }
 
     @Override
-    public void showParseFileError() {
-        System.out.println("Error parsing file.");
+    public void showParseFileError(Exception e) {
+        if (e instanceof java.nio.file.NoSuchFileException) {
+            System.out.println("File not found, make sure you input the correct path: " + ((NoSuchFileException) e).getFile());
+        } else {
+            System.out.println("Error parsing file. sample files can be found at samples folder in the project directory.\nPlease Make sure you follow the correct format:\n\n");
+            showFileFormat();
+        }
+    }
+
+    private void showFileFormat() {
+        System.out.println("[Drone #1 Name], [#1 Maximum Weight], [Drone #2 Name], [#2 Maximum Weight], etc.\n" +
+                "[Location #1 Name], [Location #1 Package Weight]");
     }
 
     @Override
     public void onDataLoaded(List<Drone> drones) {
         this.drones = drones;
         show();
+    }
+
+    @Override
+    public void showErrorDroneLimitExceeded(int number) {
+        System.out.println("A maximum of 100 drones can be set in the squad and you have: " + number + " drones");
     }
 }

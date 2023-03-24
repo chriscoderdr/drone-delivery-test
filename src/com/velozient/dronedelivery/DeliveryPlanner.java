@@ -1,4 +1,4 @@
-package com.velozient.dronedelivery.controller;
+package com.velozient.dronedelivery;
 
 import com.velozient.dronedelivery.models.Drone;
 import com.velozient.dronedelivery.models.Location;
@@ -26,13 +26,14 @@ public class DeliveryPlanner {
                         bestCapacityDrone = drone;
                     } else if (drone.getMaxWeightCapacity() > location.getWeight()
                             && drone.getCurrentTrip().getLocations().size() > 1) {
-                        // If we don't create a new trip here we won't have capacity after filling our drones
                         drone.addTrip(new Trip());
                         bestCapacityDrone = drone;
                     }
                 }
                 if (bestCapacityDrone != null) {
                     bestCapacityDrone.getCurrentTrip().addLocation(location);
+                    locationsQueue.remove();
+                } else {
                     locationsQueue.remove();
                 }
             }

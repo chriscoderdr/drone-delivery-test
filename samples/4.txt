@@ -1,0 +1,8 @@
+[Firefly], [50], [Dragonfly], [75], [Butterfly], [100]
+[Honeysuckle], [50]
+[Lavender Fields], [30]
+[Wild Rose Garden], [20]
+[Sunflower Field], [40]
+[Apple Orchard], [25]
+[Grapevineyard], [30]
+[Maple Grove], [35]

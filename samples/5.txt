@@ -1,0 +1,8 @@
+[Pegasus], [150], [Minotaur], [200], [Cerberus], [100]
+[Mt. Olympus], [150]
+[Isle of Crete], [50]
+[Delphi], [100]
+[Santorini], [75]
+[Parthenon], [120]
+[Mykonos], [50]
+[Athenian Acropolis], [100]

@@ -1,0 +1,8 @@
+[Phoenix], [150], [Dragon], [200], [Unicorn], [100]
+[Forbidden City], [150]
+[Great Wall], [50]
+[Terracotta Warriors], [100]
+[Yangtze River], [75]
+[West Lake], [120]
+[Panda Sanctuary], [50]
+[Huangshan Mountains], [100]
