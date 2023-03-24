@@ -6,6 +6,18 @@ import com.velozient.models.Location;
 import java.util.List;
 
 public class DeliveryPlanner {
-    private void assignDeliveries(List<Drone> drones, List<Location> locations) {
+    public void assignDeliveries(List<Drone> drones, List<Location> locations) {
+        for (Location location : locations) {
+            Drone bestDrone = null;
+            for (Drone drone : drones) {
+                if (bestDrone == null || drone.getRemainingCapacity() > bestDrone.getRemainingCapacity()) {
+                    bestDrone = drone;
+                }
+            }
+            if (bestDrone != null) {
+                bestDrone.addTrip(location);
+            }
+        }
+        System.out.println(drones);
     }
 }

@@ -1,3 +1,4 @@
+import com.velozient.controller.DeliveryPlanner;
 import com.velozient.models.Drone;
 import com.velozient.models.Location;
 import com.velozient.parsers.DeliveryParser;
@@ -22,6 +23,8 @@ public class Main {
         List<Drone> drones = deliveryParser.parseDrones(inputLines[0]);
         List<Location> locations = deliveryParser.parseLocations(
                 String.join(",", Arrays.copyOfRange(inputLines, 1, inputLines.length)));
+        DeliveryPlanner deliveryPlanner = new DeliveryPlanner();
+        deliveryPlanner.assignDeliveries(drones, locations);
         System.out.println(drones);
         System.out.println(locations);
     }
