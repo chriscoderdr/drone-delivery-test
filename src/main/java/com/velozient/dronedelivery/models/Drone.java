@@ -2,6 +2,7 @@ package com.velozient.dronedelivery.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Drone {
     private String name;
@@ -57,5 +58,18 @@ public class Drone {
 
     public int getCurrentCapacity() {
         return getMaxWeightCapacity() - getCurrentTrip().getTotalWeight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Drone drone = (Drone) o;
+        return maxWeightCapacity == drone.maxWeightCapacity && name.equals(drone.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, maxWeightCapacity);
     }
 }

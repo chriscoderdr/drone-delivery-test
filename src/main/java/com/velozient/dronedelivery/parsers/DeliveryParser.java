@@ -7,6 +7,6 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface DeliveryParser {
-    List<Drone> parseDrones(String input) throws FileNotFoundException;
-    List<Location> parseLocations(String input) throws FileNotFoundException;
+    List<Drone> parseDrones(String input);
+    List<Location> parseLocations(String input);
 }
